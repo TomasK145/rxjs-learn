@@ -6,4 +6,7 @@ Hot vs Cold observer
 Subject
 - iny typ Observable
 - observer ktory je schopny emitovat aj value
-- 
+
+Variacie subjects:
+- behavior subject
+    - poskytne poslednu hodnotu pre novu subscription
