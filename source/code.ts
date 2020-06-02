@@ -1,7 +1,40 @@
+//Subject 
+import { Subject } from "rxjs/Subject";
+
+var subject = new Subject()
+
+subject.subscribe(
+    data => addItem('Observer 1: ' + data),
+    err => addItem(err),
+    () => addItem('Observer 1 completed')
+);
+
+subject.next('The first thing has been sent')
+
+var observer2 = subject.subscribe( //neziska 1 next pretoze je vytvoreny neskor ako 1. next
+    data => addItem('Observer 2: ' + data)
+)
+
+subject.next('The second thing has been sent');
+subject.next('A third thing has been sent');
+
+observer2.unsubscribe();
+
+subject.next('Final thing has been sent');
+
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+
+//vytvorenie Observable z eventov
+/*
 import { Observable } from "rxjs/Observable";
 import { fromEvent } from "rxjs/Observable/fromEvent";
 
-//vytvorenie Observable z eventov
+
 var observable = fromEvent(document, 'mousemove'); //vytvori 'next' pri pohybe mysi 
 
 setTimeout(() => {
@@ -16,6 +49,7 @@ function addItem(val: any) {
     node.appendChild(textnode);
     document.getElementById("output").appendChild(node);
 } 
+*/
 
 // Observable zaklady
 /* 
