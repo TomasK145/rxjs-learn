@@ -1,4 +1,99 @@
+//skipUntil operator
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import { interval } from "rxjs/Observable/interval";
+import "rxjs/add/operator/skipUntil";
+
+var observable1 = Observable.create((data:any) => {
+    var i = 1
+    setInterval(() => {
+        data.next(i++)
+    }, 1000)
+})
+
+var observable2 = new Subject;
+setTimeout(() => {
+    observable2.next('Hey!')
+}, 3000)
+
+var newObs = observable1.skipUntil(observable2) // observable1 poskyutne hodnoty az po observable2 
+
+newObs.subscribe((x:any) => addItem(x))
+  
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+}
+
+//pluck operator
+/*
+import { from } from "rxjs/Observable/from";
+import "rxjs/add/operator/pluck";
+
+from([
+    { first: 'Gary', last: 'Simon', age: '34'},
+    { first: 'Jane', last: 'Simon', age: '34'},
+    { first: 'John', last: 'Simon', age: '34'},
+])
+.pluck('first') //vrati upravene observale
+.subscribe((x: any) => addItem(x))
+  
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+*/
+
+//map operator
+/*
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
+
+var observable = Observable.create((observer: any) => {
+    observer.next('Hey guys');
+})
+.map((val: any) => val.toUpperCase())
+.subscribe((x: any) => addItem(x))
+
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+*/
+
+//merge operator
+/*
+import { Observable } from "rxjs/Observable";
+import { merge } from "rxjs/observable/merge";
+
+var observable = Observable.create((observer: any) => {
+    observer.next('Hey guys');
+})
+
+var observable2 = Observable.create((observer: any) => {
+    observer.next('How is it going?');
+})
+
+var newObs = merge(observable, observable2); //pre zmergovanie observables
+
+newObs.subscribe((x:any) => addItem(x)); 
+
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+*/
+
 //AsyncSubject
+/*
 import { AsyncSubject } from "rxjs/AsyncSubject";
 
 var subject = new AsyncSubject()
@@ -25,6 +120,7 @@ function addItem(val: any) {
     node.appendChild(textnode);
     document.getElementById("output").appendChild(node);
 } 
+*/
 
 /*
 //Reply subject

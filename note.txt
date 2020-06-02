@@ -17,3 +17,19 @@ Variacie subjects:
 
 - async subject
     - len posledny event a Complete metoda bola zavolana na subjecte
+
+
+RxJS operator
+- Static operator
+    - these operators are usually used to create observables 
+- Instance operator 
+    - these are method on observale instances
+
+Marble diagram 
+- https://rxmarbles.com/
+
+Operators:
+- merge - zmergovanie dvoch observables
+- map - umoznuje vykonat map na hodnotach z observables (pr toUpperCase)
+- pluck - vytvara nove observables ktore je pouzite na subscibovanie, napr z objektu ziskame len jednu property
+- skipUntil - observable1 sa vykona az po produkovany hodnot z observable2
