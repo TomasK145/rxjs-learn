@@ -1,0 +1,3 @@
+Hot vs Cold observer
+- Hot - ak sa hodnota z producera hned prejavi u observera
+- Cold - ak sa hodnota z producera prejavi u observera az o nejaky cas
