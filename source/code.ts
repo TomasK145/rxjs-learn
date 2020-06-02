@@ -1,3 +1,67 @@
+//Reply subject
+import { ReplaySubject } from "rxjs/ReplaySubject";
+
+var subject = new ReplaySubject(30, 500) //poskytne 30 poslenych eventov ktore sa uskutocnili pred 500ms od prihlasenia noveho subscibera
+
+subject.subscribe(
+    data => addItem('Observer 1: ' + data),
+    err => addItem(err),
+    () => addItem('Observer 1 completed')
+);
+
+var i = 1;
+var int = setInterval(() => subject.next(i++), 100);
+
+setTimeout(() => {
+    var observer2 = subject.subscribe(
+        data => addItem('Observer 2: ' + data)
+    )
+}, 500);
+
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+
+/*
+//Reply subject
+import { ReplaySubject } from "rxjs/ReplaySubject";
+
+//var subject = new ReplaySubject(2) //poskytne 2 posledne eventy novemu subsciberovi
+var subject = new ReplaySubject(30, 200) //poskytne 30 poslenych eventov ktore
+
+subject.subscribe(
+    data => addItem('Observer 1: ' + data),
+    err => addItem(err),
+    () => addItem('Observer 1 completed')
+);
+
+subject.next('The first thing has been sent')
+subject.next('Another thing has been sent')
+subject.next('Observer2 is about to subscribe')
+
+var observer2 = subject.subscribe(
+    data => addItem('Observer 2: ' + data)
+)
+
+subject.next('The second thing has been sent');
+subject.next('A third thing has been sent');
+
+observer2.unsubscribe();
+
+subject.next('Final thing has been sent');
+
+function addItem(val: any) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+} 
+*/
+
+/*
 //Behavior subject
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
@@ -28,7 +92,7 @@ function addItem(val: any) {
     var textnode = document.createTextNode(val);
     node.appendChild(textnode);
     document.getElementById("output").appendChild(node);
-} 
+} */
 
 //Subject 
 /*

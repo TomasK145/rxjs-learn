@@ -10,3 +10,10 @@ Subject
 Variacie subjects:
 - behavior subject
     - poskytne poslednu hodnotu pre novu subscription
+
+- replay subject
+    - poskytuje buffer alebo moznost definovat kolko eventov ma byt poskytnutych novym subscriberom
+    - umoznuje aj definovat cas za ktory maju byt tieto eventy akceptovane (pozri kod)
+
+- async subject
+    - len posledny event a Complete metoda bola zavolana na subjecte
